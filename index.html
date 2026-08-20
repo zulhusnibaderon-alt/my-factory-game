@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Factory Escape & Lot Quest Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="game-container">
+        <!-- SETUP SCREEN -->
+        <div id="setup-screen">
+            <h1>Factory Escape & Lot Game</h1>
+            <p>Enter your profile and pick your difficulty:</p>
+            
+            <div class="form-group">
+                <label>Your Name:</label><br>
+                <input type="text" id="username-input" placeholder="Enter name..." value="Player 1">
+            </div>
+
+            <div class="form-group">
+                <label>Choose Body Color:</label><br>
+                <input type="color" id="color-input" value="#ffeb3b">
+            </div>
+
+            <div class="form-group">
+                <label>Choose Gender:</label><br>
+                <select id="gender-input">
+                    <option value="male">Male 👦</option>
+                    <option value="female">Female 👧</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Difficulty Level:</label><br>
+                <select id="difficulty-input">
+                    <option value="easy">Easy (Slower Chasers)</option>
+                    <option value="normal" selected>Normal</option>
+                    <option value="hard">Hard (Fast & Aggressive)</option>
+                </select>
+            </div>
+
+            <button id="start-btn">Start Game!</button>
+        </div>
+
+        <!-- GAME SCREEN -->
+        <div id="game-screen" style="display: none;">
+            <div class="hud">
+                <span>Player: <strong id="display-name"></strong></span>
+                <span>Health: <progress id="health-bar" value="100" max="100"></progress></span>
+                <span>Lots Held: <strong id="lot-count">0</strong></span>
+                <span>Score: <span id="score">0</span></span>
+            </div>
+            <canvas id="gameCanvas" width="800" height="600"></canvas>
+            <p class="instructions">Collect <strong>Lot</strong> items. Avoid <strong>ABL</strong> items! Deliver requested Lots to <strong>Mr. Tee</strong> in Building 2.</p>
+        </div>
+    </div>
+
+    <!-- SECOND CHANCE MODAL (Kak Nisa / Kak Ira) -->
+    <div id="question-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h3 id="interrogator-name">Caught!</h3>
+            <p class="dialogue">"Nak gi mana ha?"</p>
+            <input type="text" id="answer-input" placeholder="Type your answer...">
+            <br>
+            <button id="submit-answer-btn">Answer</button>
+        </div>
+    </div>
+
+    <!-- MR. TEE QUEST MODAL (Building 2) -->
+    <div id="mr-tee-modal" class="modal" style="display: none;">
+        <div class="modal-content" style="border-color: #3498db;">
+            <h3>Mr. Tee (Building 2)</h3>
+            <p id="mr-tee-dialogue" class="dialogue">"Bring me Lots!"</p>
+            <button id="deliver-lots-btn">Pass Lots</button>
+            <button id="close-tee-btn" style="background-color: #e74c3c;">Close</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

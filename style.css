@@ -1,0 +1,117 @@
+body {
+    background-color: #121212;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.game-container {
+    background: #1e1e1e;
+    display: inline-block;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+    position: relative;
+}
+
+.form-group {
+    margin: 15px 0;
+}
+
+input, select {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #444;
+    background: #2a2a2a;
+    color: white;
+    width: 200px;
+}
+
+#start-btn {
+    background-color: #00ffcc;
+    color: #000;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+#start-btn:hover {
+    background-color: #00b38f;
+}
+
+.hud {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: #2a2a2a;
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+progress {
+    width: 100px;
+    height: 15px;
+}
+
+canvas {
+    background-color: #111;
+    border: 3px solid #00ffcc;
+    border-radius: 8px;
+    display: block;
+    margin: 10px auto;
+}
+
+.instructions {
+    color: #888;
+    font-size: 13px;
+}
+
+/* Modal Popup Styling */
+.modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.modal-content {
+    background: #2c3e50;
+    padding: 30px;
+    border-radius: 10px;
+    border: 2px solid #f39c12;
+    text-align: center;
+    width: 340px;
+}
+
+.dialogue {
+    font-size: 16px;
+    font-style: italic;
+    color: #f1c40f;
+    margin: 15px 0;
+}
+
+button {
+    background-color: #27ae60;
+    color: white;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    margin: 5px;
+}
+
+button:hover {
+    opacity: 0.9;
+}
