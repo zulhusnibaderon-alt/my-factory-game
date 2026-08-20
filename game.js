@@ -102,22 +102,45 @@ startBtn.addEventListener("click", () => {
 window.addEventListener("keydown", (e) => keys[e.key] = true);
 window.addEventListener("keyup", (e) => keys[e.key] = false);
 
-// Mobile On-Screen Button Event Bindings
-function bindTouchButton(id, keyName) {
+// Improved Touch & Click Bindings for Mobile Controls
+function setupTouchButton(id, keyName) {
     const btn = document.getElementById(id);
     if (!btn) return;
 
-    btn.addEventListener("touchstart", (e) => { e.preventDefault(); keys[keyName] = true; });
-    btn.addEventListener("touchend", (e) => { e.preventDefault(); keys[keyName] = false; });
-    btn.addEventListener("mousedown", () => keys[keyName] = true);
-    btn.addEventListener("mouseup", () => keys[keyName] = false);
-    btn.addEventListener("mouseleave", () => keys[keyName] = false);
+    // Prevent default mouse emulation delays on mobile
+    btn.addEventListener("touchstart", (e) => {
+        e.preventDefault();
+        keys[keyName] = true;
+    }, { passive: false });
+
+    btn.addEventListener("touchend", (e) => {
+        e.preventDefault();
+        keys[keyName] = false;
+    }, { passive: false });
+
+    btn.addEventListener("touchcancel", (e) => {
+        e.preventDefault();
+        keys[keyName] = false;
+    }, { passive: false });
+
+    // Backup desktop mouse support
+    btn.addEventListener("mousedown", (e) => {
+        e.preventDefault();
+        keys[keyName] = true;
+    });
+    btn.addEventListener("mouseup", (e) => {
+        e.preventDefault();
+        keys[keyName] = false;
+    });
+    btn.addEventListener("mouseleave", () => {
+        keys[keyName] = false;
+    });
 }
 
-bindTouchButton("up-btn", "ArrowUp");
-bindTouchButton("down-btn", "ArrowDown");
-bindTouchButton("left-btn", "ArrowLeft");
-bindTouchButton("right-btn", "ArrowRight");
+setupTouchButton("up-btn", "ArrowUp");
+setupTouchButton("down-btn", "ArrowDown");
+setupTouchButton("left-btn", "ArrowLeft");
+setupTouchButton("right-btn", "ArrowRight");
 
 function startGame() {
     isGameOver = false;
