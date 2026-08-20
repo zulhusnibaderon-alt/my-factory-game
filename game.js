@@ -62,9 +62,8 @@ let walls = [
 
 let safeZone = { x: 420, y: 330, width: 110, height: 75 };
 
-// Mr. Tee stationed OUTSIDE Building 2
 let mrTee = { x: 140, y: 390 };
-let canInteractWithTee = true; // Prevents the modal from spamming endlessly
+let canInteractWithTee = true;
 
 let items = [];
 
@@ -102,6 +101,23 @@ startBtn.addEventListener("click", () => {
 
 window.addEventListener("keydown", (e) => keys[e.key] = true);
 window.addEventListener("keyup", (e) => keys[e.key] = false);
+
+// Mobile On-Screen Button Event Bindings
+function bindTouchButton(id, keyName) {
+    const btn = document.getElementById(id);
+    if (!btn) return;
+
+    btn.addEventListener("touchstart", (e) => { e.preventDefault(); keys[keyName] = true; });
+    btn.addEventListener("touchend", (e) => { e.preventDefault(); keys[keyName] = false; });
+    btn.addEventListener("mousedown", () => keys[keyName] = true);
+    btn.addEventListener("mouseup", () => keys[keyName] = false);
+    btn.addEventListener("mouseleave", () => keys[keyName] = false);
+}
+
+bindTouchButton("up-btn", "ArrowUp");
+bindTouchButton("down-btn", "ArrowDown");
+bindTouchButton("left-btn", "ArrowLeft");
+bindTouchButton("right-btn", "ArrowRight");
 
 function startGame() {
     isGameOver = false;
@@ -205,14 +221,12 @@ function update() {
         }
     });
 
-    // Check interaction with Mr. Tee
     let teeDist = Math.hypot(player.x - mrTee.x, player.y - mrTee.y);
     if (teeDist < 30) {
         if (canInteractWithTee) {
             triggerMrTeeModal();
         }
     } else {
-        // Reset interaction lock once the player steps away from Mr. Tee
         canInteractWithTee = true;
     }
 
@@ -256,7 +270,7 @@ function update() {
 
 function triggerMrTeeModal() {
     isPausedForModal = true;
-    canInteractWithTee = false; // Lock interaction until player walks away next time
+    canInteractWithTee = false; 
     mrTeeDialogue.textContent = `Want to pass Lots to increase health? You have ${player.lots} Lots.`;
     mrTeeModal.style.display = "flex";
 }

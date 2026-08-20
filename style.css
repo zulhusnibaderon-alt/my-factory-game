@@ -115,3 +115,34 @@ button {
 button:hover {
     opacity: 0.9;
 }
+#mobile-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+    gap: 8px;
+}
+
+.control-row {
+    display: flex;
+    gap: 40px;
+}
+
+.control-btn {
+    width: 65px;
+    height: 65px;
+    font-size: 24px;
+    background-color: rgba(52, 73, 94, 0.8);
+    color: white;
+    border: 2px solid #576574;
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    user-select: none;
+    touch-action: manipulation;
+}
+
+.control-btn:active {
+    background-color: #f1c40f;
+    color: black;
+}
